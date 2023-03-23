@@ -13,19 +13,26 @@ import openai
 
 
 class GPT:
+    """ GPT """
 
-    def __init__(self):
-        self.__key = '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'
+    def __init__(self, api_key):
+        self.__key = api_key
 
-    def ask(self, prompt):
+    def ask(self, prompt) -> str:
+        """
+        GPTAsk
+        :param prompt: str: question
+        :return: : str: answer
+        """
         openai.api_key = self.__key
         response = openai.Completion.create(
-            engine='text-davinci-003',
+            # engine='text-davinci-003',
+            model='text-davinci-003',
             prompt=prompt,
             max_tokens=1024,
             stop=None,
             temperature=0.3,
-            n=1,
+            # n=1,
             timeout=30
         )
 

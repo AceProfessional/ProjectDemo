@@ -9,6 +9,11 @@
 @CreatedTime: 2023/3/22 16:48
 """
 
-from .GlobalConfig import GlobalConfigTools
+from .GlobalConfig import DefaultConfig, GlobalGPTConfig
 
-CONF = GlobalConfigTools()
+# Defaults config
+CONF = DefaultConfig()
+# GPT defaults config
+GPT_CONF = GlobalGPTConfig().config()
+
+

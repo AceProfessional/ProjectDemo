@@ -10,17 +10,20 @@
 """
 
 from src.GPT.util import CONF as conf
-from src.GPT.service import gpt
+from src.GPT.util import GPT_CONF as gpt_conf
+from src.GPT.service import GPT
 
 
 def main():
+    gpt = GPT(api_key=gpt_conf.get('api_key'))
     while True:
         try:
-            prompt = input("您想问什么？: ")
-            if prompt.lower() == "结束会话":
+            prompt = input("Ask a question? >")
+            if prompt.lower() == "q":
                 break
             answer = gpt.ask(prompt)
             print(answer)
         except Exception as error:
             print(error)
-        
+
+

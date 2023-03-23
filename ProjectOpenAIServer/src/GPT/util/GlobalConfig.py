@@ -12,20 +12,31 @@
 import os
 import platform
 import sys
+import json
 
 
-class GlobalConfigTools:
+class DefaultConfig:
+    """ Project defaults config """
 
     def __init__(self):
-        # 判断程序是运行操作系统
         if platform.system() == 'Linux':
-            self.__SEPARATOR = '/'
+            self.SEPARATOR = '/'
         elif platform.system() == 'Windows':
-            self.__SEPARATOR = '\\'
+            self.SEPARATOR = '\\'
         else:
             sys.exit(1)
         self.PROJECT_ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
-        self.CONFIG_PATH = os.path.join(self.PROJECT_ROOT, f'src{self.__SEPARATOR}GPT{self.__SEPARATOR}conf{self.__SEPARATOR}config.json')
+
+
+class GlobalGPTConfig(DefaultConfig):
+    """ ChatGPT config """
+
+    def config(self) -> dict:
+        """
+        Config
+        :return: dict: GPT config 
+        """
+        self.CONFIG_PATH = os.path.join(self.PROJECT_ROOT, f'src{self.SEPARATOR}GPT{self.SEPARATOR}conf{self.SEPARATOR}config.json')
         try:
             if os.path.isfile(self.CONFIG_PATH):
                 pass
@@ -38,6 +49,6 @@ class GlobalConfigTools:
                     sys.exit()
         except Exception as error:
             print(error)
-
-
-
+        with open(file=self.CONFIG_PATH, mode='r', encoding='utf-8') as config_content:
+            config = json.load(config_content)
+        return config
