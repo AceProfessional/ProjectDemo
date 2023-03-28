@@ -48,3 +48,5 @@ class GPT:
             timeout=30,
             max_tokens=1000
         )
+        
+        
