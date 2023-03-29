@@ -1,4 +1,4 @@
-# coding: utf8
+pip# coding: utf8
 """ 
 @File: GlobalConfig.py
 @Editor: PyCharm
