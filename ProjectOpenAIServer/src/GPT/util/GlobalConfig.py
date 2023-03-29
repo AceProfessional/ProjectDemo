@@ -13,6 +13,7 @@ import os
 import platform
 import sys
 import json
+from loguru import logger
 
 
 class DefaultConfig:
@@ -20,12 +21,13 @@ class DefaultConfig:
 
     def __init__(self):
         if platform.system() == 'Linux':
-            self.SEPARATOR = '/'
+            self.__SEPARATOR = '/'
         elif platform.system() == 'Windows':
-            self.SEPARATOR = '\\'
+            self.__SEPARATOR = '\\'
         else:
             sys.exit(1)
         self.PROJECT_ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+        self.CONFIG_PATH = os.path.join(self.PROJECT_ROOT, f'src{self.__SEPARATOR}GPT{self.__SEPARATOR}conf{self.__SEPARATOR}config.json')
 
 
 class GlobalGPTConfig(DefaultConfig):
@@ -36,7 +38,6 @@ class GlobalGPTConfig(DefaultConfig):
         Config
         :return: dict: GPT config 
         """
-        self.CONFIG_PATH = os.path.join(self.PROJECT_ROOT, f'src{self.SEPARATOR}GPT{self.SEPARATOR}conf{self.SEPARATOR}config.json')
         try:
             if os.path.isfile(self.CONFIG_PATH):
                 pass
@@ -52,3 +53,4 @@ class GlobalGPTConfig(DefaultConfig):
         with open(file=self.CONFIG_PATH, mode='r', encoding='utf-8') as config_content:
             config = json.load(config_content)
         return config
+

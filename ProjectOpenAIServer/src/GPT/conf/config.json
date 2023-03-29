@@ -1,3 +1,8 @@
 {
-  "api_key": "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"
+  "gpt_api": {
+    "url": "https://api.openai.com/v1/chat/completions",
+    "key": [
+      "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"
+    ]
+  }
 }

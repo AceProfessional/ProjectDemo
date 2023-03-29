@@ -6,14 +6,15 @@
 @HomePage: https://github.com/AliceEngineerPro
 @OS: Windows 11 Professional Workstation 22H2
 @Environment: Python3.9 (FairyAdministrator)
-@CreatedTime: 2023/3/22 16:48
+@CreatedTime: 2023/3/27 13:18
 """
 
-from .GlobalConfig import DefaultConfig, GlobalGPTConfig
+from src.GPT.util.GlobalConfig import GlobalGPTConfig, DefaultConfig
+from src.GPT.util.Tools import PublicTools
 
-# Defaults config
-CONF = DefaultConfig()
-# GPT defaults config
-GPT_CONF = GlobalGPTConfig().config()
+__DefaultConfig = DefaultConfig()
+__GlobalGPTConfig = GlobalGPTConfig()
 
-
+PROJECT_ROOT: str = __DefaultConfig.PROJECT_ROOT
+CONFIG: dict = __GlobalGPTConfig.config()
+public_tools = PublicTools()

@@ -5,8 +5,11 @@ name = "pypi"
 
 [packages]
 openai = "*"
+loguru = "*"
+requests = "*"
 
 [dev-packages]
+streamlit = "*"
 
 [requires]
 python_version = "3.9"
