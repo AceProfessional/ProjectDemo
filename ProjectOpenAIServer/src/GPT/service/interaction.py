@@ -24,7 +24,7 @@ class GPT:
         self.__key: str = random.choices(self.__GPT_CONFIG.get('key'))[0]
 
     def __requests_headers(self) -> dict:
-        headers         = {
+        headers = {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer {}'.format(self.__key)
         }
