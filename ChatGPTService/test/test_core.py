@@ -13,10 +13,10 @@ from core import bot
 
 
 def test():
-    # old_msg = bot.test('123')
+    old_msg = bot.test(text='123')
     # msg = old_msg.append(bot.construction_user(text='456'))
-    # print(old_msg)
-    print(bot.rep(messages='你好'))
+    print(old_msg)
+    # print(bot.rep(messages='你好'))
 
 
 if __name__ == '__main__':

@@ -21,11 +21,15 @@ class ChatBot:
         pass
 
     def __construction_headers(self):
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer {}'.format(gpt_configuration.get('key'))
-        }
-        return headers
+        key = gpt_configuration.get('key')
+        if len(key) == 51:
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer {}'.format(gpt_configuration.get('key'))
+            }
+            return headers
+        else:
+            print()
 
     def __construction_messages(self, text):
         msg = [
@@ -47,7 +51,9 @@ class ChatBot:
         return self.__construction_text(role='assistant', text=text)
 
     def test(self, text):
-        return self.__construction_message(text=text)
+        print('信息: {}'.format(self.__construction_messages(text=text)))
+        print('api长度: {}'.format(len(gpt_configuration.get('key'))))
+        return
 
     def __construction_data(self, messages):
         data = {
@@ -77,14 +83,10 @@ class ChatBot:
             data: bytes
             if data != b'':
                 data = data.decode().split('data: ')[1]
-                if data != '[DONE]':
-                    print(data)
-                    # if json.loads(data)['choices'][0]['delta']['role'] == 'assistant':
-                    #     pass
-                    # else:
-                    content = json.loads(data)['choices'][0]['delta']['content']
-                    print(content)
-        return 
-
-
-
+                print(data)
+                # if json.loads(data)['choices'][0]['delta']['role'] == 'assistant':
+                #     pass
+                # else:
+                content = json.loads(data)['choices'][0]['delta']['content']
+                print(content)
+        return
