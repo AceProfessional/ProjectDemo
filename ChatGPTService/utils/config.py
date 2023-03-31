@@ -41,3 +41,12 @@ class GPTConfiguration(DefaultConfiguration):
         except Exception as error:
             print('读取配置文件错误: {}'.format(error))
             sys.exit()
+
+
+class LogsConfiguration:
+    
+    def __init__(self):
+        pass
+    
+    def log(self):
+        pass
