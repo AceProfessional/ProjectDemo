@@ -1,4 +1,5 @@
 {
-  "key": "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",
-  "url": "https://api.openai.com/v1/chat/completions"
+  "key": "",
+  "url": "https://api.openai.com/v1/chat/completions",
+  "log_level": "debug"
 }

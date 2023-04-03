@@ -9,11 +9,13 @@
 @CreatedTime: 2023/3/29 19:51
 """
 
-from utils.config import GPTConfiguration
+from utils.config import DefaultConfiguration, GPTConfiguration, LogsConfiguration
 
-__gpt_configuration = GPTConfiguration()
+_default_configuration = DefaultConfiguration()
+_gpt_configuration = GPTConfiguration()
+_logs_configuration = LogsConfiguration()
 
-project_path: str = __gpt_configuration.project_path
-config_path: str = __gpt_configuration.config_path
-gpt_configuration: dict = __gpt_configuration.config()
-
+project_path = _default_configuration.project_path
+config_path = _default_configuration.config_path
+gpt_configuration = _gpt_configuration.config()
+logs = _logs_configuration.logs()

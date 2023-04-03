@@ -9,7 +9,8 @@
 @CreatedTime: 2023/3/29 20:06
 """
 
-from utils import gpt_configuration
+import sys
+from utils import gpt_configuration, logs
 import requests
 import json
 from tqdm import tqdm
@@ -29,7 +30,8 @@ class ChatBot:
             }
             return headers
         else:
-            print()
+            logs.error('请检查key是否正确: {}'.format(key))
+            sys.exit()
 
     def __construction_messages(self, text):
         msg = [
@@ -51,9 +53,10 @@ class ChatBot:
         return self.__construction_text(role='assistant', text=text)
 
     def test(self, text):
-        print('信息: {}'.format(self.__construction_messages(text=text)))
-        print('api长度: {}'.format(len(gpt_configuration.get('key'))))
-        return
+        logs.debug('key: {}'.format(gpt_configuration.get('key')))
+        logs.debug('headers: {}'.format(self.__construction_headers()))
+        logs.debug('data: {}',format(self.__construction_data(messages=text)))
+        return '测试完成'
 
     def __construction_data(self, messages):
         data = {

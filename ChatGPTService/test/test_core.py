@@ -10,13 +10,12 @@
 """
 
 from core import bot
+from utils import logs
 
 
 def test():
-    old_msg = bot.test(text='123')
-    # msg = old_msg.append(bot.construction_user(text='456'))
-    print(old_msg)
-    # print(bot.rep(messages='你好'))
+    old_msg = bot.test(text='测试消息')
+    logs.info(old_msg)
 
 
 if __name__ == '__main__':
