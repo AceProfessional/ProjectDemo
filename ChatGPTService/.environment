@@ -1,0 +1,2 @@
+RUN_ENV_ChatGTPService=Production
+RUN_ENV_ChatGTPService=Development

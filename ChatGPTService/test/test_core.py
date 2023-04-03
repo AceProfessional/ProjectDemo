@@ -11,11 +11,11 @@
 
 from core import bot
 from utils import logs
+import os
 
 
 def test():
-    old_msg = bot.test(text='测试消息')
-    logs.info(old_msg)
+    bot.test(text='测试消息')
 
 
 if __name__ == '__main__':

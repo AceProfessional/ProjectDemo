@@ -10,7 +10,7 @@
 """
 
 import sys
-from utils import gpt_configuration, logs
+from utils import conf, project_path, config_path, logs, env
 import requests
 import json
 from tqdm import tqdm
@@ -20,13 +20,16 @@ class ChatBot:
 
     def __init__(self):
         pass
+    
+    def __key(self):
+        return conf.get('key')
 
     def __construction_headers(self):
-        key = gpt_configuration.get('key')
+        key = self.__key()
         if len(key) == 51:
             headers = {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer {}'.format(gpt_configuration.get('key'))
+                'Authorization': 'Bearer {}'.format(key)
             }
             return headers
         else:
@@ -53,10 +56,14 @@ class ChatBot:
         return self.__construction_text(role='assistant', text=text)
 
     def test(self, text):
-        logs.debug('key: {}'.format(gpt_configuration.get('key')))
-        logs.debug('headers: {}'.format(self.__construction_headers()))
-        logs.debug('data: {}',format(self.__construction_data(messages=text)))
-        return '测试完成'
+        logs.debug('项目路径: {}'.format(project_path))
+        logs.debug('运行环境: {}'.format(env))
+        logs.debug('配置路径: {}'.format(config_path))
+        logs.debug('请求key: {}'.format(self.__key))
+        logs.debug('请求headers: {}'.format(self.__construction_headers()))
+        logs.debug('请求data: {}',format(self.__construction_data(messages=text)))
+        logs.debug('测试完成')
+        return
 
     def __construction_data(self, messages):
         data = {
@@ -74,7 +81,7 @@ class ChatBot:
 
     def __gpt_response(self, messages):
         response = requests.post(
-            url=gpt_configuration.get('url'),
+            url=conf.get('url'),
             data=json.dumps(self.__construction_data(messages=messages)),
             headers=self.__construction_headers()
         )
